@@ -1373,7 +1373,7 @@ static void node_draw_sockets(const View2D &v2d,
   /* Socket inputs. */
   short selected_input_len = 0;
   LISTBASE_FOREACH (bNodeSocket *, sock, &node.inputs) {
-    if (nodeSocketIsHidden(sock)) {
+    if (nodeSocketIsHidden(sock) || sock->flag & SOCK_COMPACT) {
       continue;
     }
     if (select_all || (sock->flag & SELECT)) {
@@ -1406,7 +1406,7 @@ static void node_draw_sockets(const View2D &v2d,
   short selected_output_len = 0;
   if (draw_outputs) {
     LISTBASE_FOREACH (bNodeSocket *, sock, &node.outputs) {
-      if (nodeSocketIsHidden(sock)) {
+      if (nodeSocketIsHidden(sock) || sock->flag & SOCK_COMPACT) {
         continue;
       }
       if (select_all || (sock->flag & SELECT)) {
@@ -2307,7 +2307,7 @@ static void node_draw_basis(const bContext &C,
   UI_view2d_scale_get(&v2d, &scale, nullptr);
 
   /* Skip slow socket drawing if zoom is small. */
-  if (scale > 0.2f) {
+  if (scale > 0.2f ) {
     node_draw_sockets(v2d, C, ntree, node, block, true, false);
   }
 

@@ -135,6 +135,8 @@ static void update_socket_to_match_interface(bNodeTree &node_tree,
 
   const int mask = SOCK_HIDE_VALUE;
   socket_to_update.flag = (socket_to_update.flag & ~mask) | (interface_socket.flag & mask);
+  const int mask2 = SOCK_COMPACT;
+  socket_to_update.flag = (socket_to_update.flag & ~mask2) | (interface_socket.flag & mask2);
 
   /* Update socket type if necessary */
   if (socket_to_update.typeinfo != interface_socket.typeinfo) {

@@ -10926,7 +10926,7 @@ static void rna_def_node_socket(BlenderRNA *brna)
   RNA_def_property_ui_text(prop, "Is Output", "True if the socket is an output, otherwise input");
 
   prop = RNA_def_property(srna, "hide", PROP_BOOLEAN, PROP_NONE);
-  RNA_def_property_boolean_sdna(prop, NULL, "flag", SOCK_HIDDEN);
+  RNA_def_property_boolean_sdna(prop, NULL, "flag", SOCK_COMPACT);
   RNA_def_property_boolean_funcs(prop, NULL, "rna_NodeSocket_hide_set");
   RNA_def_property_ui_text(prop, "Hide", "Hide the socket");
   RNA_def_property_update(prop, NC_NODE | ND_DISPLAY, NULL);
@@ -11084,6 +11084,14 @@ static void rna_def_node_socket_interface(BlenderRNA *brna)
   RNA_def_property_clear_flag(prop, PROP_ANIMATABLE);
   RNA_def_property_ui_text(
       prop, "Hide Value", "Hide the socket input value even when the socket is not connected");
+  RNA_def_property_update(prop, NC_NODE | NA_EDITED, "rna_NodeSocketInterface_update");
+
+  prop = RNA_def_property(srna, "hide", PROP_BOOLEAN, PROP_NONE);
+  RNA_def_property_boolean_sdna(prop, NULL, "flag", SOCK_COMPACT);
+  RNA_def_property_clear_flag(prop, PROP_ANIMATABLE);
+  //RNA_def_property_boolean_funcs(prop, NULL, "rna_NodeSocket_hide_set");
+  RNA_def_property_ui_text(prop, "Hide", "Hide the socket");
+  //RNA_def_property_update(prop, NC_NODE | ND_DISPLAY, NULL);
   RNA_def_property_update(prop, NC_NODE | NA_EDITED, "rna_NodeSocketInterface_update");
 
   prop = RNA_def_property(srna, "attribute_domain", PROP_ENUM, PROP_NONE);

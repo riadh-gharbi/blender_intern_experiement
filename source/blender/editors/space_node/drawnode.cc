@@ -1466,6 +1466,7 @@ static void std_node_socket_interface_draw(bContext *UNUSED(C), uiLayout *layout
   }
 
   uiItemR(layout, ptr, "hide_value", DEFAULT_FLAGS, nullptr, 0);
+  uiItemR(layout, ptr, "hide", DEFAULT_FLAGS, nullptr, 0);
 }
 
 static void node_socket_virtual_draw_color(bContext *UNUSED(C),
